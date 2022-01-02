@@ -8,6 +8,8 @@
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
 import { Set, Router, Route, Private } from '@redwoodjs/router'
+import ArticlesLayout from 'src/layouts/ArticlesLayout'
+import SourcesLayout from 'src/layouts/SourcesLayout'
 import PropertiesLayout from 'src/layouts/PropertiesLayout'
 import GroupRolesLayout from 'src/layouts/GroupRolesLayout'
 import UsersLayout from 'src/layouts/UsersLayout'
@@ -27,6 +29,18 @@ const Routes = () => {
         <Route path="/logout" page={LogoutPage} name="logout" />
         <Route path="/" page={HomePage} name="home" />
         <Private unauthenticated="home">
+          <Set wrap={ArticlesLayout}>
+            <Route path="/articles/new" page={ArticleNewArticlePage} name="newArticle" />
+            <Route path="/articles/{id:Int}/edit" page={ArticleEditArticlePage} name="editArticle" />
+            <Route path="/articles/{id:Int}" page={ArticleArticlePage} name="article" />
+            <Route path="/articles" page={ArticleArticlesPage} name="articles" />
+          </Set>
+          <Set wrap={SourcesLayout}>
+            <Route path="/sources/new" page={SourceNewSourcePage} name="newSource" />
+            <Route path="/sources/{id:Int}/edit" page={SourceEditSourcePage} name="editSource" />
+            <Route path="/sources/{id:Int}" page={SourceSourcePage} name="source" />
+            <Route path="/sources" page={SourceSourcesPage} name="sources" />
+          </Set>
           <Route path="/about" page={AboutPage} name="about" />
           <Set wrap={PropertiesLayout}>
             <Route path="/properties/new" page={PropertyNewPropertyPage} name="newProperty" />

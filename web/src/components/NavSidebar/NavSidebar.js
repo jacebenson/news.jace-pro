@@ -130,6 +130,40 @@ const NavSidebar = ({ children, isAuthenticated, currentUser, hasRole }) => {
                     </NavLink>
                   </li>
                 )}
+                {/**Sources */}
+
+                {hasRole(['sourceRead', 'admin']) && (
+                  <li>
+                    <NavLink
+                      to={routes.sources()}
+                      activeClassName={styles.active}
+                      className={styles.notActive}
+                      onClick={toggleMenu}
+                    >
+                      <span className=" text-gray-600">{icons.list}</span>
+                      <span>
+                        {currentUser.messages['Sources'] || 'Sources'}
+                      </span>
+                    </NavLink>
+                  </li>
+                )}
+                {/**Articles */}
+
+                {hasRole(['articleRead', 'admin']) && (
+                  <li>
+                    <NavLink
+                      to={routes.articles()}
+                      activeClassName={styles.active}
+                      className={styles.notActive}
+                      onClick={toggleMenu}
+                    >
+                      <span className=" text-gray-600">{icons.list}</span>
+                      <span>
+                        {currentUser.messages['Articles'] || 'Articles'}
+                      </span>
+                    </NavLink>
+                  </li>
+                )}
                 {/**Properties */}
 
                 {hasRole(['admin']) && (
@@ -147,22 +181,6 @@ const NavSidebar = ({ children, isAuthenticated, currentUser, hasRole }) => {
                     </NavLink>
                   </li>
                 )}
-
-                <li>
-                  {/*<a href="/#" className={styles.notActive}>
-                    <span className="text-gray-600">{icons.settings}</span>
-                    <span>Settings</span>
-                  </a>*/}
-                </li>
-                <li>
-                  {/*<Link
-                    to={routes.resetPassword()}
-                    className={styles.notActive}
-                  >
-                    <span className="text-gray-600">{icons.lock}</span>
-                    <span>Change password</span>
-                  </Link>*/}
-                </li>
                 <li>
                   <Link
                     className={styles.notActive}
