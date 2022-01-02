@@ -54,6 +54,7 @@ model User {
   resetTokenExpiresAt DateTime?
   GroupMember         GroupMember[] @relation("UserGroupMember")
   Preference          Preference[]  @relation("UserPreference")
+  Participant         Participant[] @relation("ParticipantUser")
 }
 
 model Preference {
@@ -72,8 +73,9 @@ model Group {
   updatedAt   DateTime      @updatedAt
   name        String
   description String
-  GroupMember GroupMember[]
+  GroupMember GroupMember[] @relation("UserGroup")
   GroupRole   GroupRole[]
+  Source      Source[]
 }
 
 model GroupMember {
@@ -82,7 +84,7 @@ model GroupMember {
   updatedAt DateTime @updatedAt
   userId    Int
   groupId   Int
-  group     Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  group     Group    @relation("UserGroup", fields: [groupId], references: [id], onDelete: Cascade)
   user      User     @relation("UserGroupMember", fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -93,4 +95,41 @@ model GroupRole {
   role      String
   groupId   Int
   group     Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
+}
+
+model Source {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  title       String
+  contentType String    @default("text")
+  // text, audio, video, interactive
+  feedLink    String
+  Article     Article[] @relation("ArticleSource")
+  groupId     Int       @default(1)
+  group       Group     @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+}
+
+model Article {
+  id           Int           @id @default(autoincrement())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  title        String
+  link         String        @unique
+  timesListed  Int?          @default(0)
+  timesClicked Int?          @default(0)
+  sourceId     Int
+  source       Source        @relation("ArticleSource", fields: [sourceId], references: [id], onDelete: Cascade)
+  Participant  Participant[] @relation("ParticipantContent")
+}
+
+model Participant {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int
+  user      User     @relation("ParticipantUser", fields: [userId], references: [id], onDelete: Cascade)
+  articleId Int
+  article   Article  @relation("ParticipantContent", fields: [articleId], references: [id], onDelete: Cascade)
 }

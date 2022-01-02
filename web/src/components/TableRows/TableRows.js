@@ -140,6 +140,27 @@ const TableRows = ({
           </Box>
         </>
       )
+    if (column.linkField)
+      return (
+        <>
+          {menu(row, column)}
+          <Box p="2">
+            <a title={row[column.accessor]} href={row[column.linkField]}>
+              {row[column.accessor]}
+            </a>
+          </Box>
+        </>
+      )
+    if (column.dateFormat)
+      return (
+        <>
+          {menu(row, column)}
+          <Box p="2">
+            {new Date(row[column.accessor]).toLocaleString(column.dateFormat)}
+          </Box>
+        </>
+      )
+
     if (row?.[column.accessor])
       return (
         <>

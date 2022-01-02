@@ -27,5 +27,8 @@ export const schema = gql`
     group: Sort
     "on GroupMember"
     user: Sort
+    title: Sort
+    contentType: Sort
+    #Article: Sort
   }
 `

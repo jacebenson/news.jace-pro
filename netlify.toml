@@ -4,6 +4,7 @@ publish = "web/dist"
 functions = "api/dist/functions"
 
 [dev]
+  command = "yarn rw dev"
   # To use [Netlify Dev](https://www.netlify.com/products/dev/),
   # install netlify-cli from https://docs.netlify.com/cli/get-started/#installation
   # and then use netlify link https://docs.netlify.com/cli/get-started/#link-and-unlink-sites
