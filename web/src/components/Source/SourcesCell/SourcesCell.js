@@ -61,6 +61,11 @@ export const QUERY = gql`
         Article {
           id
         }
+        groupId
+        group {
+          id
+          name
+        }
       }
     }
   }

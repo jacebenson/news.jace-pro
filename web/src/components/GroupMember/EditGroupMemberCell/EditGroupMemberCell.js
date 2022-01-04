@@ -85,7 +85,12 @@ export const Success = ({ groupMember }) => {
   }
   const fields = [
     {
-      name: 'field',
+      name: 'groupId',
+      prettyName: 'Field',
+      required: 'message to show when empty',
+    },
+    {
+      name: 'userId',
       prettyName: 'Field',
       required: 'message to show when empty',
     },

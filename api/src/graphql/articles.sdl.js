@@ -24,7 +24,7 @@ export const schema = gql`
       take: Int
       orderBy: OrderByInput
       q: String
-    ): Articles! @requireAuth(roles: ["articleRead", "admin"])
+    ): Articles! @skipAuth
 
     article(id: Int!): Article @requireAuth(roles: ["articleRead", "admin"])
   }

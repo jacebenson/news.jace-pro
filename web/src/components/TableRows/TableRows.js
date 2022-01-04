@@ -15,6 +15,7 @@ import {
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
+import { Fragment } from 'react'
 
 const TableRows = ({
   columns,
@@ -172,19 +173,21 @@ const TableRows = ({
     if (column.accessor === 'actions') {
       if (hasRole([roles.deleteRecord].concat(['admin']))) {
         return (
-          <Box p="2">
-            <Button
-              value={row.id}
-              onClick={handleDeleteItem}
-              leftIcon={<CloseIcon />}
-              colorScheme="red"
-              variant="solid"
-              type="button"
-              size="sm"
-            >
-              Remove
-            </Button>
-          </Box>
+          <Fragment>
+            <Box p="2">
+              <Button
+                value={row.id}
+                onClick={handleDeleteItem}
+                leftIcon={<CloseIcon />}
+                colorScheme="red"
+                variant="solid"
+                type="button"
+                size="sm"
+              >
+                Remove
+              </Button>
+            </Box>
+          </Fragment>
         )
       }
     }

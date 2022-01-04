@@ -172,4 +172,6 @@ export const deleteSource = async ({ id }) => {
 export const Source = {
   Article: (_obj, { root }) =>
     db[table].findUnique({ where: { id: root.id } }).Article(),
+  group: (_obj, { root }) =>
+    db[table].findUnique({ where: { id: root.id } }).group(),
 }

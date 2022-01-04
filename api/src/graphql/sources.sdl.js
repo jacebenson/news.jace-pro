@@ -5,6 +5,9 @@ export const schema = gql`
     updatedAt: DateTime!
     title: String!
     feedLink: String!
+    contentType: String!
+    groupId: Int!
+    group: Group!
     Article: [Article]!
   }
 
@@ -36,6 +39,8 @@ export const schema = gql`
   input UpdateSourceInput {
     title: String
     feedLink: String
+    contentType: String
+    groupId: Int
   }
 
   type Mutation {

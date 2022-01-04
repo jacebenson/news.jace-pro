@@ -6,16 +6,16 @@ import { MetaTags } from '@redwoodjs/web'
 import { showMatching, filterOut } from '/src/lib/atomicFunctions'
 
 export const initialColumns = [
-  {
-    Header: 'Id',
-    accessor: 'id',
-    link: (givenId) => {
-      return routes.source({ id: givenId })
-    },
-    dataType: 'integer',
-    showMatching,
-    filterOut,
-  },
+  // {
+  //   Header: 'Id',
+  //   accessor: 'id',
+  //   link: (givenId) => {
+  //     return routes.source({ id: givenId })
+  //   },
+  //   dataType: 'integer',
+  //   showMatching,
+  //   filterOut,
+  // },
 
   {
     Header: 'Title',
@@ -27,6 +27,18 @@ export const initialColumns = [
     filterOut,
   },
 
+  {
+    Header: 'Group',
+    accessor: 'group',
+    field: 'name',
+    reference: true,
+    link: (givenId) => {
+      return routes.group({ id: givenId })
+    },
+    showMatching,
+    filterOut,
+    canSort: false,
+  },
   {
     Header: 'Feed',
     accessor: 'feedLink',

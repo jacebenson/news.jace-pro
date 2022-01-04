@@ -75,9 +75,12 @@ export const Success = ({ group }) => {
   }
   const fields = [
     {
-      name: 'field',
-      prettyName: 'Field',
-      required: 'message to show when empty',
+      name: 'name',
+      prettyName: 'Name',
+    },
+    {
+      name: 'description',
+      prettyName: 'Description',
     },
   ]
 
