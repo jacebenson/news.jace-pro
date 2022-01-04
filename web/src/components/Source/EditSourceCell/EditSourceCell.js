@@ -13,6 +13,12 @@ export const QUERY = gql`
       updatedAt
       title
       feedLink
+      contentType
+      groupId
+      group {
+        name
+        id
+      }
     }
   }
 `
@@ -24,6 +30,8 @@ const UPDATE_SOURCE_MUTATION = gql`
       updatedAt
       title
       feedLink
+      contentType
+      groupId
     }
   }
 `
@@ -42,6 +50,7 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ source }) => {
+  console.log('source', source)
   const [updateSource, { loading, error }] = useMutation(
     UPDATE_SOURCE_MUTATION,
     {
@@ -61,7 +70,11 @@ export const Success = ({ source }) => {
     onSave(data, source.id)
   }
   const onSave = (input, id) => {
-    updateSource({ variables: { id, input } })
+    const castInput = Object.assign(input, {
+      groupId: parseInt(input.groupId),
+    })
+
+    updateSource({ variables: { id, input: castInput } })
   }
 
   const [deleteSource] = useMutation(DELETE_SOURCE_MUTATION, {
@@ -78,9 +91,46 @@ export const Success = ({ source }) => {
   }
   const fields = [
     {
-      name: 'field',
-      prettyName: 'Field',
-      required: 'message to show when empty',
+      name: 'title',
+      prettyName: 'Title',
+    },
+    {
+      name: 'feedLink',
+      prettyName: 'feedLink',
+    },
+    {
+      name: 'contentType',
+      prettyName: 'contentType',
+    },
+    // {
+    //   name: 'groupId',
+    //   prettyName: 'groupId',
+    // },
+    {
+      name: 'groupId',
+      prettyName: 'Group',
+      type: 'reference',
+      display: 'name',
+      defaultValue: source.group.id,
+      defaultDisplay: source.group.name,
+
+      value: 'id',
+      QUERY: gql`
+        query FindReferenceFieldQueryNewGroupRoleGroup(
+          $filter: String
+          $skip: Int
+        ) {
+          search: groups(filter: $filter, skip: $skip) {
+            count
+            take
+            skip
+            results {
+              id
+              name
+            }
+          }
+        }
+      `,
     },
   ]
 

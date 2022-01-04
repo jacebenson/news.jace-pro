@@ -8,6 +8,7 @@ import {
   MenuList,
   MenuItem,
   Text,
+  Box,
 } from '@chakra-ui/react'
 import {
   TriangleUpIcon,
@@ -47,7 +48,9 @@ const TableColumns = ({
               _focus={{ boxShadow: 'outline' }}
               fontSize={24}
             >
-              {column.Header} <ChevronDownIcon />
+              <Box display="flex" alignItems="center">
+                <Text>{column.Header}</Text> <ChevronDownIcon />
+              </Box>
             </MenuButton>
             <MenuList>
               {column.canSort != false && (

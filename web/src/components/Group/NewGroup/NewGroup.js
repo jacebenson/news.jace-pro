@@ -24,6 +24,7 @@ const NewGroup = () => {
   })
 
   const onSubmit = (data) => {
+    console.log('saving', data)
     /**TODO: FEAT Client Rules go here */
     onSave(data)
   }
@@ -32,18 +33,6 @@ const NewGroup = () => {
     createGroup({ variables: { input } })
   }
   const fields = [
-    {
-      name: 'id',
-      prettyName: 'Id',
-    },
-    {
-      name: 'createdAt',
-      prettyName: 'Created at',
-    },
-    {
-      name: 'updatedAt',
-      prettyName: 'Updated at',
-    },
     {
       name: 'name',
       prettyName: 'Name',

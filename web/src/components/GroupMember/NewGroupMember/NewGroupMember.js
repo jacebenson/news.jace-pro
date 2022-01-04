@@ -48,7 +48,7 @@ const NewGroupMember = () => {
     //  prettyName: 'User id',
     //},
     {
-      prettyName: 'Users',
+      prettyName: 'User',
       name: 'userId',
       type: 'reference',
       display: 'name',
@@ -72,9 +72,29 @@ const NewGroupMember = () => {
         }
       `,
     },
+
     {
+      prettyName: 'Group',
       name: 'groupId',
-      prettyName: 'Group id',
+      type: 'reference',
+      display: 'name',
+      value: 'id',
+      QUERY: gql`
+        query FindReferenceFieldQueryNewGroupMember(
+          $filter: String
+          $skip: Int
+        ) {
+          search: groups(filter: $filter, skip: $skip) {
+            count
+            take
+            skip
+            results {
+              id
+              name
+            }
+          }
+        }
+      `,
     },
   ]
 
