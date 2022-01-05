@@ -54,7 +54,7 @@ model User {
   resetTokenExpiresAt DateTime?
   GroupMember         GroupMember[] @relation("UserGroupMember")
   Preference          Preference[]  @relation("UserPreference")
-  Participant         Participant[] @relation("ParticipantUser")
+  Participant         Participant[] @relation("User")
 }
 
 model Preference {
@@ -121,7 +121,7 @@ model Article {
   timesClicked Int?          @default(0)
   sourceId     Int
   source       Source        @relation("ArticleSource", fields: [sourceId], references: [id], onDelete: Cascade)
-  Participant  Participant[] @relation("ParticipantContent")
+  Participant  Participant[] @relation("ParticipantArticle")
 }
 
 model Participant {
@@ -129,7 +129,9 @@ model Participant {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    Int
-  user      User     @relation("ParticipantUser", fields: [userId], references: [id], onDelete: Cascade)
+  user      User     @relation("User", fields: [userId], references: [id], onDelete: Cascade)
   articleId Int
-  article   Article  @relation("ParticipantContent", fields: [articleId], references: [id], onDelete: Cascade)
+  article   Article  @relation("ParticipantArticle", fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, articleId])
 }

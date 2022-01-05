@@ -47,8 +47,11 @@ export default async ({ args }) => {
   //items = items.filter((item) => {
   //  return item.createdAt > new Date()
   //})
-  console.log('items', items)
+  //console.log('items', items)
   //await db.article.deleteMany({})
+
+  // lets get servicenow articles and blogs
+
   let result = await db.article.createMany({
     data: items,
     skipDuplicates: true,

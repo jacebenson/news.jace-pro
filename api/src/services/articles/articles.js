@@ -113,6 +113,7 @@ export const articles = async ({ filter, skip, orderBy, q }) => {
         if (filter) {
           let OR = [
             { title: { contains: filter, mode: 'insensitive' } },
+            { link: { contains: filter, mode: 'insensitive' } },
             { source: { title: { contains: filter, mode: 'insensitive' } } },
           ]
           let castFilter = parseInt(filter, 10)

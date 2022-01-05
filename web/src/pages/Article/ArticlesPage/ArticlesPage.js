@@ -59,7 +59,7 @@ export const initialColumns = [
 const ArticlesPage = () => {
   let [fuzzyQuery, setFuzzyQuery] = useState('')
   let [query, setQuery] = useState('')
-  let [orderBy, setOrderBy] = useState({ id: 'asc' })
+  let [orderBy, setOrderBy] = useState({ createdAt: 'desc' })
   let [skip, setSkip] = useState(0)
   let [take, setTake] = useState(10)
   let [columns, setColumns] = useState(initialColumns)

@@ -20,6 +20,7 @@ export const beforeQuery = (props) => {
   const { search, pathname } = useLocation()
   let params = new URLSearchParams(search)
   if (pathname !== '/articles') return
+  //console.log('beforeQuery', props)
   return {
     variables: {
       q: params.get('q'),
