@@ -103,7 +103,7 @@ export const Success = ({
         rawQuery={articles.q}
         inputPlaceholder="Search"
         link={(query) => {
-          return routes.articles({ q: query })
+          return routes.home({ q: query })
         }}
         setSkip={setSkip}
       />
