@@ -19,14 +19,14 @@ export const beforeQuery = (props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { search, pathname } = useLocation()
   let params = new URLSearchParams(search)
-  if (pathname !== '/articles') return
+  if (pathname !== '/') return
   //console.log('beforeQuery', props)
   return {
     variables: {
       q: params.get('q'),
       filter: params.get('filter') || props.fuzzyQuery,
       skip: params.get('skip') || props.skip || 0,
-      take: params.get('take') || props.take || 10,
+      take: 100, //params.get('take') || props.take || 10,
       orderBy: params.get('orderBy') || props.orderBy,
     },
 

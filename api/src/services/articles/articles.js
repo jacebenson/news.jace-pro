@@ -96,17 +96,20 @@ export const upsertArticle = async ({ input }) => {
   }
 }
 
-export const articles = async ({ filter, skip, orderBy, q }) => {
+export const articles = async ({ filter, skip, take, orderBy, q }) => {
   try {
-    let preferences = context.currentUser.preferences
-    let take = (() => {
-      let limit = parseInt(preferences['user.pageSize'], 10) || 10
-      if (limit > 100) {
-        return 100 //return 100 or limit whatever is smaller
-      } else {
-        return limit
-      }
-    })()
+    //let preferences = context.currentUser.preferences
+    //let _take = (() => {
+    //  let limit = parseInt(preferences['user.pageSize'], 10) || 10
+    //  if (limit > 100) {
+    //    return 100 //return 100 or limit whatever is smaller
+    //  } else {
+    //    return limit
+    //  }
+    //})()
+    if (take === undefined) {
+      take = 100
+    }
     let where = (() => {
       try {
         let returnObject = {}

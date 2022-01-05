@@ -25,15 +25,16 @@ const Routes = () => {
       <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
       <Route path="/login" page={LoginPage} name="login" />
       <Route path="/signup" page={SignupPage} name="signup" />
+      <Route path="/" page={ArticleArticlesPage} name="home" />
       <Set wrap={Standard}>
         <Route path="/logout" page={LogoutPage} name="logout" />
-        <Route path="/" page={HomePage} name="home" />
+        <Route path="/articles" page={ArticleArticlesPage} name="articles" />
         <Private unauthenticated="home">
           <Set wrap={ArticlesLayout}>
             <Route path="/articles/new" page={ArticleNewArticlePage} name="newArticle" />
             <Route path="/articles/{id:Int}/edit" page={ArticleEditArticlePage} name="editArticle" />
             <Route path="/articles/{id:Int}" page={ArticleArticlePage} name="article" />
-            <Route path="/articles" page={ArticleArticlesPage} name="articles" />
+            {/*<Route path="/articles" page={ArticleArticlesPage} name="articles" />*/}
           </Set>
           <Set wrap={SourcesLayout}>
             <Route path="/sources/new" page={SourceNewSourcePage} name="newSource" />

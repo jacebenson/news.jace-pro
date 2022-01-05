@@ -54,7 +54,7 @@ export default async ({ args }) => {
           'ServiceNow Articles'
         )
         let linkUrl =
-          'https://community.servicenow.com/community?id=community_content&sys_id='
+          'https://community.servicenow.com/community?id=community_article&sys_id='
         responseObj.result.contents.forEach(function (post) {
           items.push({
             title: post.title,

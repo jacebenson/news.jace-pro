@@ -61,7 +61,7 @@ const ArticlesPage = () => {
   let [query, setQuery] = useState('')
   let [orderBy, setOrderBy] = useState({ createdAt: 'desc' })
   let [skip, setSkip] = useState(0)
-  let [take, setTake] = useState(10)
+  let [take, setTake] = useState(1000)
   let [columns, setColumns] = useState(initialColumns)
   let roles = {
     createRecord: 'articleCreate',
