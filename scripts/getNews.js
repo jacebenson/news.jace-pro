@@ -20,7 +20,9 @@ export default async ({ args }) => {
   let rawItems = []
   for (let source of sources) {
     try {
-      console.log('trying', source.feedLink)
+      console.log(
+        `trying https://new.jace.pro/source/${source.id} ${source.feedLink}`
+      )
       let feed = await parser.parseURL(source.feedLink)
       for (let item of feed.items) {
         rawItems.push(item)
@@ -42,8 +44,14 @@ export default async ({ args }) => {
   }
   console.log('items', items.length)
   // remove things from before today
-  items = items.filter((item) => {
-    return item.createdAt > new Date()
-  })
+  //items = items.filter((item) => {
+  //  return item.createdAt > new Date()
+  //})
   console.log('items', items)
+  //await db.article.deleteMany({})
+  let result = await db.article.createMany({
+    data: items,
+    skipDuplicates: true,
+  })
+  console.log('result', result)
 }
